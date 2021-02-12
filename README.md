@@ -1,5 +1,5 @@
 # Proyecto realizado por Johann Steven Bogotá
-# Laboratorio 02 AREP
+# Laboratorio 03 AREP
 
 En este laboratorio se busco hacer un programa que funcionara como un aplicativo web estatico cliente-servidor que soportara
 multiples solcitudes y que este fuera capaz de responderlas retornando sus archivos correspondientes, en este trabajo
