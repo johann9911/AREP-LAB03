@@ -14,13 +14,21 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import javax.imageio.ImageIO;
-
+/**
+ * 
+ * @author johann Bogotá
+ *
+ */
 public class HttpServer {
 
 	public HttpServer() {
 		super();
 	}
-
+	
+	/**
+	 * Main method of the application
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		HttpServer hserver = new HttpServer();
 		try {
@@ -29,7 +37,11 @@ public class HttpServer {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * This method is usted to start the application client-server
+	 * @throws IOException
+	 */
 	private void startServer() throws IOException {
 		ServerSocket serverSocket = null;
 		try {
@@ -91,6 +103,12 @@ public class HttpServer {
 		serverSocket.close();
 	}
 
+	/**
+	 * This method is used to send the resource(html or json) to client
+	 * @param resource Part of path of resource
+	 * @param out Is the socket to send
+	 * @param term String that is html or json
+	 */
 	private void outResource(String resource, PrintWriter out, String term) {
 
 		try {
@@ -110,7 +128,12 @@ public class HttpServer {
 		}
 
 	}
-
+	
+	/**
+	 * This method is used to send the image to the client
+	 * @param resource Part of path of resource
+	 * @param entrada Socket to send
+	 */
 	private void outResourceImage(String resource, OutputStream entrada) {
 		  try {
 	            BufferedImage image = ImageIO.read(new File(System.getProperty("user.dir")+ "/src/resources" + resource));
@@ -125,7 +148,12 @@ public class HttpServer {
 	            e.printStackTrace();
 	        }
 	}
-
+	
+	/**
+	 * 
+	 * This method is used to get to port of system
+	 * @return the port of system or 35000 if is empty
+	 */
 	private int getPort() {
 		if (System.getenv("PORT") != null) {
 			return Integer.parseInt(System.getenv("PORT"));
