@@ -56,13 +56,16 @@ public class HttpServer {
 			while ((inputLine = in.readLine()) != null) {
 				System.out.println("Recibí: " + inputLine);
 				if (inputLine.startsWith("GET")) {
-					entry = true;
+					
 					String resource = inputLine.split(" ")[1];
 					if (resource.contains("html")) {
 						outResource(resource, out, "html");
+						entry = true;
 					} else if (resource.contains("js")) {
 						outResource(resource, out, "json");
+						entry = true;
 					} else if (resource.contains("png")) {
+						entry = true;
 						outResourceImage(resource, clientSocket.getOutputStream());
 					}
 					
@@ -71,11 +74,13 @@ public class HttpServer {
 					break;
 				}
 			}
+			
 			if (!entry) {
-				outputLine = "HTTP/1.1 200 OK\r\n" + "Content-Type: text/html\r\n" + "\r\n" + "<!DOCTYPE html>\n"
+				outputLine = "HTTP/1.1 200 OK\r\n" + "Content-Type: text/html\r\n" + "\r\n" 
+						+ "<!DOCTYPE html>\n"
 						+ "<html>\n" + "<head>\n" + "<meta charset=\"UTF-8\">\n"
 						+ "<title>Title of the document</title>\n" + "</head>\n" + "<body>\n"
-						+ "<h1>Mi propio mensaje</h1>\n" + "</body>\n" + "</html>\n" + inputLine;
+						+ "<h1>Mi propio mensaje</h1>\n" + "</body>\n" + "</html>\n";
 
 				out.println(outputLine);
 			}
